@@ -24,11 +24,12 @@ jobs:
           java-version: '17'
 
       - name: Determine JavaFX platform
+        id: platform
         shell: bash
         run: |
-          if [ "${RUNNER_OS}" = "Linux" ]; then echo "JAVA_PLATFORM=linux" >> $GITHUB_ENV; fi
-          if [ "${RUNNER_OS}" = "macOS" ]; then echo "JAVA_PLATFORM=mac" >> $GITHUB_ENV; fi
-          if [ "${RUNNER_OS}" = "Windows" ]; then echo "JAVA_PLATFORM=win" >> $GITHUB_ENV; fi
+          if [ "${RUNNER_OS}" = "Linux" ]; then echo "platform=linux" >> $GITHUB_OUTPUT; fi
+          if [ "${RUNNER_OS}" = "macOS" ]; then echo "platform=mac" >> $GITHUB_OUTPUT; fi
+          if [ "${RUNNER_OS}" = "Windows" ]; then echo "platform=win" >> $GITHUB_OUTPUT; fi
 
       - name: Cache Maven local repository
         uses: actions/cache@v4
@@ -39,4 +40,4 @@ jobs:
             ${{ runner.os }}-m2-
 
       - name: Build (package)
-        run: mvn -B -Djavafx.platform=${JAVA_PLATFORM} clean package -DskipTests
+        run: mvn -B -Djavafx.platform=${{ steps.platform.outputs.platform }} clean package -DskipTests
