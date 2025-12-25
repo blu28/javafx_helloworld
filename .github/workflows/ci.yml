@@ -40,4 +40,4 @@ jobs:
             ${{ runner.os }}-m2-
 
       - name: Build (package)
-        run: mvn -B -Djavafx.platform=${{ steps.platform.outputs.platform }} clean package -DskipTests
+        run: mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" clean package -DskipTests
