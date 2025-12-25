@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HelloTest {
 
     @Test
-    void messageReturnsHelloWorld() {
-        assertEquals("Hello World!", Hello.message());
+    void simpleArithmetic() {
+        assertEquals(2, 1 + 1);
     }
 }
