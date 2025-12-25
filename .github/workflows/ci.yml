@@ -39,5 +39,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2-
 
-      - name: Build (package)
-        run: mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" clean package -DskipTests
+      - name: Build and Test
+        run: mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" clean package
+
+      - name: Run UI Tests (Linux only)
+        if: runner.os == 'Linux'
+        run: mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" -Pmonocle test
