@@ -44,6 +44,6 @@ jobs:
           if [ "${{ runner.os }}" = "macOS" ]; then
             mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" clean package -Dtest=HelloTest
           else
-            mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" clean package
+            mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" clean package -Dtest=HelloTest
           fi
         shell: bash
