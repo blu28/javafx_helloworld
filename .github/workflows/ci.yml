@@ -24,6 +24,7 @@ jobs:
           java-version: '17'
 
       - name: Determine JavaFX platform
+        shell: bash
         run: |
           if [ "${RUNNER_OS}" = "Linux" ]; then echo "JAVA_PLATFORM=linux" >> $GITHUB_ENV; fi
           if [ "${RUNNER_OS}" = "macOS" ]; then echo "JAVA_PLATFORM=mac" >> $GITHUB_ENV; fi
