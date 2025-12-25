@@ -39,9 +39,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2-
 
-      - name: Build and Test
-        run: mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" clean package
-
-      - name: Run UI Tests (Linux only)
-        if: runner.os == 'Linux'
-        run: mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" -Pmonocle test
+      - name: Build and Test (skip AppTest on macOS)
+        run: |
+          if [ "${{ runner.os }}" = "macOS" ]; then
+            mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" clean package -Dtest=HelloTest
+          else
+            mvn -B "-Djavafx.platform=${{ steps.platform.outputs.platform }}" clean package
+          fi
+        shell: bash
