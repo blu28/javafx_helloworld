@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "mainClass": "com.example.helloworld.App"
+    },
+    {
+      "type": "java",
+      "name": "Launch App",
+      "request": "launch",
+      "mainClass": "com.example.helloworld.App",
+      "projectName": "hello-javafx",
+      "preLaunchTask": "Run JavaFX"
+    }
+  ]
+}
